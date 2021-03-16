@@ -71,7 +71,11 @@ class App extends Component {
     this.state.marketplace.methods
       .createProduct(name, price)
       .send({ from: this.state.account })
-      .once("receipt", (receipt) => {
+      .on("confirmation", (confirmation) => {
+        this.setState({ loading: false });
+      })
+      .on("error", (error) => {
+        console.log("Error", error);
         this.setState({ loading: false });
       });
   }
@@ -81,7 +85,11 @@ class App extends Component {
     this.state.marketplace.methods
       .purchaseProduct(id)
       .send({ from: this.state.account, value: price })
-      .once("receipt", (receipt) => {
+      .on("confirmation", (confirmation) => {
+        this.setState({ loading: false });
+      })
+      .on("error", (error) => {
+        console.log("Error", error);
         this.setState({ loading: false });
       });
   }
