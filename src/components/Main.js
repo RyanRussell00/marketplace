@@ -72,7 +72,7 @@ class Main extends Component {
                   <td>{product.owner}</td>
                   <td>
                     {!product.purchased &&
-                    product.owner != this.props.account ? (
+                    product.owner !== this.props.account ? (
                       <button
                         name={product.id}
                         value={product.price}
